@@ -1,0 +1,13 @@
+db:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: dp_test
+drupal:
+  image: drupal:latest
+  volumes:
+    - ./:/var/www/html
+  links:
+    - db:mysql
+  ports:
+    - 8080:80
