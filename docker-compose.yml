@@ -2,11 +2,13 @@ db:
   image: mysql:latest
   environment:
     MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: dp_test
+    MYSQL_DATABASE: dp_dbname
+  volumes:
+    - ./docker-runtime/mysql:/var/lib/mysql
 drupal:
   image: drupal:latest
   volumes:
-    - ./:/var/www/html
+    - ./:/var/www/
   links:
     - db:mysql
   ports:
