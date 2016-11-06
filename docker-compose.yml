@@ -5,6 +5,18 @@ db:
     MYSQL_DATABASE: dp_dbname
   volumes:
     - ./docker-runtime/mysql:/var/lib/mysql
+phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  environment:
+    PMA_HOST: mysql 
+    PMA_USER: root
+    PMA_PASSWORD: root
+    PHP_UPLOAD_MAX_FILESIZE: 1G
+    PHP_MAX_INPUT_VARS: 1G
+  links:
+    - db:mysql
+  ports:
+    - 8088:80
 drupal:
   image: drupal:latest
   volumes:
